@@ -27,7 +27,7 @@ public:
 
     static std::string& PATH()
     {
-        static std::string s = "../game/";
+        static std::string s = "game/";
         return s;
     }
 
