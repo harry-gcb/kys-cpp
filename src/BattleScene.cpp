@@ -88,7 +88,7 @@ void BattleScene::draw()
         Engine::getInstance()->renderCopy(earth_texture_, &rect0, &rect1, 1);
     }
 
-#ifndef _DEBUG
+#ifndef DEBUG
     for (int sum = -view_sum_region_; sum <= view_sum_region_ + 15; sum++)
     {
         for (int i = -view_width_region_; i <= view_width_region_; i++)

@@ -66,7 +66,7 @@ void SubScene::draw()
         Engine::getInstance()->renderCopy(earth_texture_, &rect0, &rect1, 1);
         //在rect0的坐标越界时似乎不太正常，懒得弄了
     }
-#ifndef _DEBUG
+#ifndef DEBUG
     for (int sum = -view_sum_region_; sum <= view_sum_region_ + 15; sum++)
     {
         for (int i = -view_width_region_; i <= view_width_region_; i++)
@@ -115,7 +115,7 @@ void SubScene::draw()
                 //有高度地面
                 int h = submap_info_->BuildingHeight(ix, iy);
                 int num = submap_info_->Earth(ix, iy) / 2;
-#ifndef _DEBUG
+#ifndef DEBUG
                 if (num > 0 && h > 0)
                 {
                     TextureManager::getInstance()->renderTexture("smap", num, p.x, p.y);

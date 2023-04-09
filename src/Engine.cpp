@@ -85,7 +85,7 @@ int Engine::init(void* handle)
     square_ = createRectTexture(100, 100, 0);
 
     fmt1::print("maximum width and height are: {}, {}\n", max_x_, max_y_);
-#if defined(_WIN32) && defined(WITH_SMALLPOT) && !defined(_DEBUG)
+#if defined(_WIN32) && defined(WITH_SMALLPOT) && !defined(DEBUG)
     tinypot_ = PotCreateFromWindow(window_);
 #endif
     return 0;
@@ -97,7 +97,7 @@ void Engine::destroy()
     destroyAssistTexture();
     SDL_DestroyRenderer(renderer_);
     SDL_DestroyWindow(window_);
-#if defined(_WIN32) && defined(WITH_SMALLPOT) && !defined(_DEBUG)
+#if defined(_WIN32) && defined(WITH_SMALLPOT) && !defined(DEBUG)
     PotDestory(tinypot_);
 #endif
     SDL_Quit();
@@ -534,7 +534,7 @@ int Engine::playVideo(std::string filename)
     {
         return 0;
     }
-#if defined(_WIN32) && defined(WITH_SMALLPOT) && !defined(_DEBUG)
+#if defined(_WIN32) && defined(WITH_SMALLPOT) && !defined(DEBUG)
     return PotInputVideo(tinypot_, (char*)filename.c_str());
 #endif
     return 0;

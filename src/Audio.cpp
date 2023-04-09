@@ -11,8 +11,13 @@ Audio::Audio()
         fmt1::print("Init Bass fault!\n");
     }
 #else
-    Mix_Init(MIX_INIT_MP3);
-    if (Mix_OpenAudio(22500, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+    //Mix_Init(MIX_INIT_MP3);
+    //if (Mix_OpenAudio(22500, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+    //{
+    //    fmt1::print("Mix_OpenAudio: {}\n", Mix_GetError());
+    //}
+    Mix_Init(MIX_INIT_MID | MIX_INIT_MP3);
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) != (MIX_INIT_MID | MIX_INIT_MP3))
     {
         fmt1::print("Mix_OpenAudio: {}\n", Mix_GetError());
     }
@@ -70,6 +75,9 @@ void Audio::init()
             BASS_MIDI_StreamSetFonts(m, &mid_sound_font_, 1);
 #else
             auto m = Mix_LoadMUS(music_path.c_str());
+            if (!m) {
+                fprintf(stderr, "Mix_LoadMUS failed: %s\n", Mix_GetError());
+            }
 #endif
             music_.push_back(m);
         }
